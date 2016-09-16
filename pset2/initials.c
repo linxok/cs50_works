@@ -38,4 +38,5 @@ int main(void)
     for (int i=0; i<k; i++)
         printf("%c", charOut[i]);
     printf("\n");
+    return 0;
 }
