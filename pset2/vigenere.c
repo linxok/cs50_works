@@ -6,19 +6,6 @@
 
 
 char caesar (char c, int k)
-{
-    if (isupper(c))
-    {
-                c = (c - 'A' + k) % 26;
-                c = c + 'A';
-     }  else
-         {
-                c = (c - 'a' + k) % 26;
-                c = c + 'a';
-         }
-return c;
-}
-
 
 int main (int argc, string argv[])
 {
@@ -44,18 +31,16 @@ int main (int argc, string argv[])
     int text_key_index =0;
     int int_text_key[text_key_lenght];
     
-    
-    
-    for (int i =0; i < text_key_lenght; i++)
+    for (int i =0; i < text_key_lenght; i++)   
     {
-        int_text_key[i] = toupper(text_key[i]) - 65 ;
+        int_text_key[i] = toupper(text_key[i]) - 'A' ; // making digital key where a = 0
     }
     
     for (int i=0; i < text_user_lenght; i++)
     {
         if (isalpha(text_user[i]))
         {
-            text_user[i] = caesar(text_user[i],int_text_key[(text_key_index)%text_key_lenght]);
+            text_user[i] = caesar(text_user[i],int_text_key[(text_key_index)%text_key_lenght]); 
             text_key_index++;
         }
     }
@@ -63,4 +48,18 @@ int main (int argc, string argv[])
     printf("%s\n", text_user);
 
     return 0;
+}
+
+char caesar (char c, int k)
+{
+    if (isupper(c))
+    {
+                c = (c - 'A' + k) % 26;
+                c = c + 'A';
+     }  else
+         {
+                c = (c - 'a' + k) % 26;
+                c = c + 'a';
+         }
+return c;
 }

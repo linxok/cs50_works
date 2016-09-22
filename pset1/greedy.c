@@ -13,7 +13,7 @@ int main(void)
     do 
     {
     printf("How much change is owed?\n");
-    cash = GetFloat();     // scanf ("%f", &cash);
+    cash = GetFloat();     
     } while (cash <=0); 
     cash = round(cash*100);
     
@@ -35,15 +35,9 @@ int main(void)
     if (cash >= 1)
     {
         coin1 = cash/1;
-        //cash = cash - (coin1*1);
+        
     }
     
-    /*
-    printf("coin 25: %i\n", coin25);
-    printf("coin 10: %i\n", coin10);
-    printf("coin  5: %i\n", coin5);
-    printf("coin  1: %i\n", coin1);
-    */
     printf("%i\n", coin25+coin10+coin5+coin1);
     return 0;
 }

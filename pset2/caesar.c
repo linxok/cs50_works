@@ -6,19 +6,6 @@
 
 
 char caesar (char c, int k)
-{
-    if (isupper(c))
-    {
-                c = (c - 'A' + k) % 26;
-                c = c + 'A';
-     }  else
-         {
-                c = (c - 'a' + k) % 26;
-                c = c + 'a';
-         }
-return c;
-}
-
 
 int main (int argc, string argv[])
 {
@@ -40,11 +27,25 @@ int main (int argc, string argv[])
     int n=strlen(strIn);
     for (int i=0; i<n; i++)
     {
-        if ( (strIn[i]>64 && strIn[i]<91) || (strIn[i]>96 && strIn[i]<123) )
+        if ( (strIn[i]> 'A' && strIn[i]<'Z') || (strIn[i]>'a' && strIn[i]<'z') )
             strIn[i] = caesar(strIn[i],k);
     }
 
     printf("ciphertext: %s\n", strIn);
 
     return 0;
+}
+
+char caesar (char c, int k)
+{
+    if (isupper(c))
+    {
+                c = (c - 'A' + k) % 26;
+                c = c + 'A';
+     }  else
+         {
+                c = (c - 'a' + k) % 26;
+                c = c + 'a';
+         }
+return c;
 }

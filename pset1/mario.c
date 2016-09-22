@@ -14,10 +14,10 @@ int main(void)
     for (int i = 0; i<height; i++)            // how to print line
     {
         for (int b = height-i-1; b>0; b--)      // how to print " "
-        printf(" ");
+            printf(" ");
         printf("#");
         for (int c = height; c>height-i; c--) // how to print "#"
-        printf("#");
+            printf("#");
         printf("#\n");                        // finish line
 
     }
