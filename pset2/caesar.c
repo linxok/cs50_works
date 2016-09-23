@@ -5,7 +5,7 @@
 #include <string.h>
 
 
-char caesar (char c, int k)
+char caesar (char c, int k);
 
 int main (int argc, string argv[])
 {
@@ -21,17 +21,16 @@ int main (int argc, string argv[])
         return 1;
     }
     
-    printf ("plaintext:  ");
     string strIn = GetString();
 
     int n=strlen(strIn);
     for (int i=0; i<n; i++)
     {
-        if ( (strIn[i]> 'A' && strIn[i]<'Z') || (strIn[i]>'a' && strIn[i]<'z') )
+        if (isalpha(strIn[i]) )
             strIn[i] = caesar(strIn[i],k);
     }
 
-    printf("ciphertext: %s\n", strIn);
+    printf("%s\n", strIn);
 
     return 0;
 }

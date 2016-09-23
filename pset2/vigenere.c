@@ -5,7 +5,7 @@
 #include <string.h>
 
 
-char caesar (char c, int k)
+char caesar (char c, int k);
 
 int main (int argc, string argv[])
 {
