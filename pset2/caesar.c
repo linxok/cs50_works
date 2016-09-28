@@ -20,7 +20,7 @@ int main (int argc, string argv[])
         printf ("Usage: ./caesar k\n");
         return 1;
     }
-    
+    printf("plaintext:  ");
     string strIn = GetString();
 
     int n=strlen(strIn);
@@ -30,7 +30,7 @@ int main (int argc, string argv[])
             strIn[i] = caesar(strIn[i],k);
     }
 
-    printf("%s\n", strIn);
+    printf("ciphertext: %s\n", strIn);
 
     return 0;
 }

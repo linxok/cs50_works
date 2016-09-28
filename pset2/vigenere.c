@@ -25,7 +25,7 @@ int main (int argc, string argv[])
         return 1;
         }
     }
-    
+    printf ("plaintext:  ");
     string text_user = GetString();
     int text_user_lenght = strlen(text_user);
     int text_key_index =0;
@@ -45,7 +45,7 @@ int main (int argc, string argv[])
         }
     }
 
-    printf("%s\n", text_user);
+    printf("ciphertext: %s\n", text_user);
 
     return 0;
 }
