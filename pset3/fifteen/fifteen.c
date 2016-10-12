@@ -160,6 +160,21 @@ void greet(void)
 void init(void)
 {
     // TODO
+    int number = (d*d)-1;
+    for (int i = 0; i < d; i++)
+    {
+        for (int j = 0; j < d; j++)
+        {
+            board[i][j] = number;
+            number--;
+            
+        }
+    }
+    if ((d % 2) == 0)      // согласно условию если размер поля четное то порядок 1 и 2 должен быть изменен
+    {
+        board[d-1][d-3] = 1;
+        board[d-1][d-2] = 2;
+    }
 }
 
 /**
@@ -168,6 +183,24 @@ void init(void)
 void draw(void)
 {
     // TODO
+    for (int i = 0; i < d; i++)
+    {
+        printf("| ");
+        
+        for(int j = 0; j < d; j++)
+        {
+            if (!board[i][j])
+            {
+                printf(" __ ");
+            }
+            else
+            {
+                printf("%3d ", board[i][j]);
+                
+            }
+        }
+        printf("|\n");
+    }
 }
 
 /**
@@ -177,6 +210,38 @@ void draw(void)
 bool move(int tile)
 {
     // TODO
+    int xtile = 0;
+    int ytile = 0;
+    int xnull = 0;
+    int ynull = 0;
+    int xtemp = 0;
+    int ytemp = 0;
+    for (int i = 0; i < d; i++)
+    {
+        for (int j = 0; j < d; j++)
+        {
+            if (board[i][j] == 0)
+            {
+                xnull = i;
+                ynull = j;
+            }
+            if (board[i][j] == tile)
+            {
+                xtile = i;
+                ytile = j;
+            }
+        }
+    }
+    xtemp = abs(xnull - xtile);
+    ytemp = abs(ynull - ytile);
+    
+    if ( ((xtemp == 1) && (ytemp == 0)) || ((xtemp == 0) && (ytemp == 1)) )
+    {
+        board[xtile][ytile] = 0;
+        board[xnull][ynull] = tile;
+        return true;
+    }
+    
     return false;
 }
 
@@ -187,5 +252,22 @@ bool move(int tile)
 bool won(void)
 {
     // TODO
-    return false;
+    int number =  1;
+    for (int i = 0; i < d; i++)
+    {
+        for (int j = 0; j < d; j++)
+        {
+            if ( (i == d-1) && (j == d-1)) // Последнее число в последовательности должно быть 0
+            {
+                number = 0;
+            }
+            
+            if ((board[d-1][d-1] == 0) && (board[i][j] == number)) // можно было бы и без первой половины условия обойтись
+            { 
+                number ++;                                        // но так программа будет быстрее работать
+            } else return false;
+        } 
+    }
+    
+    return true;
 }
