@@ -19,40 +19,34 @@ int main (int argc, char* argv[])
     }
 
 
-    unsigned char data[512];
-    FILE *outPtr = NULL;
-    char filename[8] = "000.jpg";
-    int jpgcount = 0;
-
-
+    unsigned char data[512];  // buffer for read write and analize data
+    FILE *outPtr = NULL; 
+    char filename[8] = "000.jpg"; // string wea cheng file name
+    int jpgcount = 0;  // count oupened files
+    
     while (fread(&data, sizeof(data), 1, inPtr))
     {
-
-
+        // signature start JPG file
         if ( ((data[0] == 0xff) &&
-             (data[1] == 0xd8) &&
-             (data[2] == 0xff)) &&
+              (data[1] == 0xd8) &&
+              (data[2] == 0xff)) &&
              ((data[3] == 0xe0) || (data[3] == 0xe1)))
         {
-
-            if (!outPtr)
-            {
-                outPtr = fopen(filename, "w");
-                jpgcount++;
-            } else
-                    {
-                    sprintf(filename, "%03i.jpg", jpgcount++);
+            if (!outPtr)  // output file not opened
+                {
                     outPtr = fopen(filename, "w");
+                    jpgcount++;
+                } else
+                    {
+                        fclose(outPtr);  // clouse previos output file
+                        sprintf(filename, "%03i.jpg", jpgcount++); // cheng string filename and increment count
+                        outPtr = fopen(filename, "w"); // open new output file for new name
                     }
         }
-
         if (outPtr)
-        {
-            fwrite(&data, sizeof(data), 1, outPtr);
-
-        }
-
-
+            { // write lfnf for oupen output file
+                fwrite(&data, sizeof(data), 1, outPtr);
+            }
     }
 
     fclose(inPtr);
